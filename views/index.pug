@@ -1,30 +1,35 @@
 extends layout
 
 block content
-  h1 Welcome to Research Repository System
-  ul
-    each paper in researchPapers
-      li= `${paper.title} by ${paper.author} - ${paper.link}`
+  .home-container
+    h1 Welcome to Research Repository System
+    p
+      | Discover the latest research papers from various academic disciplines. 
+      | Explore and contribute to our growing repository of knowledge.
 
-  .container
-  .row.align-items-start
-    .col
-      | One of three columns
-    .col
-      | One of three columns
-    .col
-      | One of three columns
-  .row.align-items-center
-    .col
-      | One of three columns
-    .col
-      | One of three columns
-    .col
-      | One of three columns
-  .row.align-items-end
-    .col
-      | One of three columns
-    .col
-      | One of three columns
-    .col
-      | One of three columns
+    // List of Recent Research Papers
+    if researchPapers.length > 0
+      h2 Recent Research Papers
+      ul
+        each paper in researchPapers
+          li
+            strong= paper.title
+            |  by #{paper.author} -
+            a(href=paper.link, target="_blank") View Paper
+            |  -
+            a(href=`/download/${paper.id}`, target="_blank") Download Paper
+
+  
+    // Upload New Research Paper Form
+    h2.upl Upload a New Research Paper
+    form(action="/upload", method="post", enctype="multipart/form-data")
+      label(for="title") Title:
+      input(type="text", id="title", name="title", required)
+
+      label(for="author") Author:
+      input(type="text", id="author", name="author", required)
+
+      label(for="file") Upload Paper (PDF only):
+      input(type="file", id="file", name="file", accept=".pdf", required)
+
+      button(type="submit") Upload Paper

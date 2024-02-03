@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .paper-container
+    h2 Add New Research Paper
+    form(action='/add-paper', method='post')
+      label(for='title') Title:
+      input(type='text', name='title', required)
+      label(for='author') Author:
+      input(type='text', name='author', required)
+      label(for='link') Link:
+      input(type='text', name='link', required)
+      button(type='submit') Add Paper
+    br
+    a(href='/') Go Back to Home

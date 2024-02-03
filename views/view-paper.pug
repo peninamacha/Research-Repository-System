@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .paper-container
+    h2 View Research Paper
+    h3 #{paper.title} by #{paper.author}
+    p
+      | This research paper is available for viewing. Click the link below:
+    a(href=paper.link, target="_blank") View Paper
+    br
+    a(href='/') Go Back to Home
